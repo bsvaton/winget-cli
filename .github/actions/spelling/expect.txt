@@ -8,6 +8,7 @@ admx
 AFAIK
 aicli
 AICLIC
+AKV
 allusers
 alreadyinstalled
 AMap
@@ -41,6 +42,7 @@ bcp
 BEFACEF
 BFirst
 bght
+bigcatalog
 BITMAPINFOHEADER
 bitspace
 bkup
@@ -74,6 +76,7 @@ COINIT
 COMGLB
 commandline
 compressapi
+concurrencysal
 contactsupport
 contentfiles
 contoso
@@ -89,7 +92,7 @@ createmanifestmetadata
 cswinrt
 ctc
 currentuser
-DACL
+dacl
 datetimeoffset
 debian
 dedupe
@@ -340,6 +343,7 @@ PCCERT
 PCs
 pcwsz
 PDWORD
+Peet
 peetdev
 PEGI
 PFM
@@ -400,6 +404,7 @@ runspace
 runtimeclass
 ryfu
 rzkzqaqjwj
+sacl
 SARL
 SASURL
 schematab

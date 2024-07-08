@@ -47,20 +47,12 @@ namespace AppInstaller::Repository::Microsoft
 
             std::vector<std::string> result;
 
-            if (Settings::ExperimentalFeature::IsEnabled(Settings::ExperimentalFeature::Feature::IndexV2))
-            {
-                result.emplace_back(GetPackageLocation(details.Arg, s_PreIndexedPackageSourceFactory_V2_PackageFileName));
-            }
-
+            result.emplace_back(GetPackageLocation(details.Arg, s_PreIndexedPackageSourceFactory_V2_PackageFileName));
             result.emplace_back(GetPackageLocation(details.Arg, s_PreIndexedPackageSourceFactory_PackageFileName));
 
             if (!details.AlternateArg.empty())
             {
-                if (Settings::ExperimentalFeature::IsEnabled(Settings::ExperimentalFeature::Feature::IndexV2))
-                {
-                    result.emplace_back(GetPackageLocation(details.AlternateArg, s_PreIndexedPackageSourceFactory_V2_PackageFileName));
-                }
-
+                result.emplace_back(GetPackageLocation(details.AlternateArg, s_PreIndexedPackageSourceFactory_V2_PackageFileName));
                 result.emplace_back(GetPackageLocation(details.AlternateArg, s_PreIndexedPackageSourceFactory_PackageFileName));
             }
 
@@ -527,8 +519,7 @@ namespace AppInstaller::Repository::Microsoft
                 winrt::Windows::Foundation::Uri uri = winrt::Windows::Foundation::Uri(localFile.c_str());
                 Deployment::AddPackage(
                     uri,
-                    winrt::Windows::Management::Deployment::DeploymentOptions::None,
-                    WI_IsFlagSet(details.TrustLevel, SourceTrustLevel::Trusted),
+                    Deployment::Options{ WI_IsFlagSet(details.TrustLevel, SourceTrustLevel::Trusted) },
                     progress);
 
                 if (download)

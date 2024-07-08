@@ -145,6 +145,8 @@ namespace AppInstaller::SQLite::Builder
             case Type::Integer:
                 out << "INTEGER";
                 break;
+            case Type::None:
+                break;
             default:
                 THROW_HR(E_UNEXPECTED);
             }
@@ -516,6 +518,12 @@ namespace AppInstaller::SQLite::Builder
     StatementBuilder& StatementBuilder::OrderBy(const QualifiedColumn& column)
     {
         OutputColumns(m_stream, " ORDER BY ", column);
+        return *this;
+    }
+
+    StatementBuilder& StatementBuilder::OrderBy(std::initializer_list<std::string_view> columns)
+    {
+        OutputColumns(m_stream, " ORDER BY ", columns);
         return *this;
     }
 

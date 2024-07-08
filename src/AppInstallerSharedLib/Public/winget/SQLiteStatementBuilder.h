@@ -112,6 +112,7 @@ namespace AppInstaller::SQLite::Builder
         Text,
         Blob,
         Integer, // Type for specifying a primary key column as a row id alias.
+        None, // Does not declare a type
     };
 
     template <Type type, bool allowNull>
@@ -342,6 +343,7 @@ namespace AppInstaller::SQLite::Builder
         // Specify the ordering to use.
         StatementBuilder& OrderBy(std::string_view column);
         StatementBuilder& OrderBy(const QualifiedColumn& column);
+        StatementBuilder& OrderBy(std::initializer_list<std::string_view> columns);
 
         // Specify the ordering behavior.
         StatementBuilder& Ascending();

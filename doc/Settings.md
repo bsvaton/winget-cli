@@ -99,6 +99,16 @@ The 'skipDependencies' behavior affects whether dependencies are installed for a
     },
 ```
 
+### Archive Extraction Method
+The 'archiveExtractionMethod' behavior affects how installer archives are extracted. Currently there are two supported values: `Tar` or `ShellApi`.
+`Tar` indicates that the archive should be extracted using the tar executable ('tar.exe') while `shellApi` indicates using the Windows Shell API. Defaults to `shellApi` if value is not set or is invalid.
+
+```json
+    "installBehavior": {
+        "archiveExtractionMethod": "tar" | "shellApi"
+    },
+```
+
 ### Preferences and Requirements
 
 Some of the settings are duplicated under `preferences` and `requirements`. `preferences` affect how the various available options are sorted when choosing the one to act on.  For instance, the default scope of package installs is for the current user, but if that is not an option then a machine level installer will be chosen. `requirements` filter the options, potentially resulting in an empty list and a failure to install. In the previous example, a user scope requirement would result in no applicable installers and an error.
@@ -302,17 +312,6 @@ You can enable the feature as shown below.
    },
 ```
 
-### sideBySide
-
-This feature enables experimental improvements for supporting multiple instances of a package being installed on a system.
-You can enable the feature as shown below.
-
-```json
-   "experimentalFeatures": {
-       "sideBySide": true
-   },
-```
-
 ### configureSelfElevate
 
 This feature enables configure commands to request elevation as needed.
@@ -324,17 +323,6 @@ Currently, this means that properly attributed configuration units (and only tho
    },
 ```
 
-### storeDownload
-
-This feature enables packages to be downloaded from the Microsoft Store.
-You can enable the feature as shown below.
-
-```json
-   "experimentalFeatures": {
-       "storeDownload": true
-   },
-```
-
 ### configureExport
 
 This feature enables exporting a configuration file.
@@ -343,22 +331,5 @@ You can enable the feature as shown below.
 ```json
    "experimentalFeatures": {
        "configureExport": true
-   },
-```
-
-### indexV2
-
-This feature enables the `winget` source to retrieve the V2 index, which is significantly smaller.
-Regardless of the state of this feature, if the index on the machine contains a V2 index, it will be used.
-If there is a bug with the V2 index stopping the `winget` CLI from working, disable the feature in your settings file and run this command:
-```
-> winget uninstall -s msstore Microsoft.Winget.Source_8wekyb3d8bbwe
-```
-
-You can enable the feature as shown below.
-
-```json
-   "experimentalFeatures": {
-       "indexV2": true
    },
 ```
